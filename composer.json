@@ -1,0 +1,10 @@
+{
+    "name": "dianadauksa/jobhub",
+    "description": "A simple job listing website built with PHP",
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "Framework/",
+            "App\\": "App/"
+        }
+    }
+}
