@@ -78,6 +78,10 @@ class Router {
     public function route($uri): void {
         $request_method = $_SERVER['REQUEST_METHOD'];
 
+        if ($request_method === 'POST' && isset($_POST['_method'])) {
+            $request_method = strtoupper($_POST['_method']);
+        }
+
         foreach ($this->routes as $route) {
             $uri_segments = explode('/', trim($uri, '/'));
             $route_segments = explode('/', trim($route['uri'], '/'));

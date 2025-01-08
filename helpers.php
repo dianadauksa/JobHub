@@ -78,3 +78,24 @@ function dd($variable): void {
 function format_salary($salary): string {
 	return '$'.number_format(floatval($salary));
 }
+
+/**
+ * Sanitize a value
+ * 
+ * @param string $value
+ * @return string
+ */
+function sanitize($value): string {
+	return filter_var(trim($value), FILTER_SANITIZE_SPECIAL_CHARS);
+}
+
+/**
+ * Redirect to a URL
+ * 
+ * @param string $url
+ * @return void
+ */
+function redirect($url): void {
+	header("Location: {$url}");
+	exit;
+}
