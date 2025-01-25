@@ -1,7 +1,7 @@
-<?= load_partial('head') ?>
-<?= load_partial('navbar') ?>
-<?= load_partial('search') ?>
-<?= load_partial('top-banner') ?>
+<?= loadPartial('head') ?>
+<?= loadPartial('navbar') ?>
+<?= loadPartial('search') ?>
+<?= loadPartial('top-banner') ?>
 
 <section>
 	<div class="container mx-auto p-4 mt-4">
@@ -14,7 +14,7 @@
 					<h2 class="text-xl font-semibold"><?= $listing->title ?></h2>
 					<p class="text-gray-700 text-lg mt-2"><?= $listing->description ?></p>
 					<ul class="my-4 bg-gray-100 p-4 rounded">
-						<li class="mb-2"><strong>Salary:</strong> <?= format_salary($listing->salary) ?></li>
+						<li class="mb-2"><strong>Salary:</strong> <?= formatSalary($listing->salary) ?></li>
 						<li class="mb-2">
 							<strong>Location:</strong> <?= $listing->city ?>, <?= $listing->state ?>
 							<!-- <span class="text-xs bg-blue-500 text-white rounded-full px-2 py-1 ml-2">
@@ -42,5 +42,5 @@
 	</div>
 </section>
 
-<?= load_partial('bottom-banner') ?>
-<?= load_partial('footer') ?>
+<?= loadPartial('bottom-banner') ?>
+<?= loadPartial('footer') ?>

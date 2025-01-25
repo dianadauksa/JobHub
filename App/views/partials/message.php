@@ -2,8 +2,8 @@
 
 use Framework\Session;
 
-$success_message = Session::get_flash('success_message');
-$error_message = Session::get_flash('error_message');
+$success_message = Session::getFlash('success_message');
+$error_message = Session::getFlash('error_message');
 
 ?>
 

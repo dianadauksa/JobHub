@@ -1,6 +1,6 @@
-<?= load_partial('head') ?>
-<?= load_partial('navbar') ?>
-<?= load_partial('top-banner') ?>
+<?= loadPartial('head') ?>
+<?= loadPartial('navbar') ?>
+<?= loadPartial('top-banner') ?>
 
 <?php
 
@@ -10,13 +10,13 @@ use Framework\Authorization;
 
 <section class="container mx-auto p-4 mt-4">
 	<div class="rounded-lg shadow-md bg-white p-3">
-		<?= load_partial('message') ?>
+		<?= loadPartial('message') ?>
 		<div class="flex justify-between items-center">
 			<a class="block p-4 text-blue-700" href="/listings">
 				<i class="fa fa-arrow-alt-circle-left"></i>
 				Back To Listings
 			</a>
-			<?php if (Authorization::is_owner($listing->user_id)): ?>
+			<?php if (Authorization::isOwner($listing->user_id)): ?>
 				<div class="flex space-x-4 ml-4">
 					<a href="/listings/edit/<?= $listing->id ?>" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">Edit</a>
 					<form method="POST" action="/listings/<?= $listing->id ?>">
@@ -32,7 +32,7 @@ use Framework\Authorization;
             	<?= $listing->description ?>
           	</p>
           	<ul class="my-4 bg-gray-100 p-4">
-            	<li class="mb-2"><strong>Salary:</strong> <?= format_salary($listing->salary) ?></li>
+            	<li class="mb-2"><strong>Salary:</strong> <?= formatSalary($listing->salary) ?></li>
             	<li class="mb-2">
             		<strong>Location:</strong> <?= $listing->city ?>, <?= $listing->state ?>
             		<!-- <span class="text-xs bg-blue-500 text-white rounded-full px-2 py-1 ml-2">
@@ -70,5 +70,5 @@ use Framework\Authorization;
 	</a>
 </section>
 
-<?php load_partial('bottom-banner'); ?>
-<?php load_partial('footer'); ?>
+<?php loadPartial('bottom-banner'); ?>
+<?php loadPartial('footer'); ?>

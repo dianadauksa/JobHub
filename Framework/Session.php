@@ -77,7 +77,7 @@ class Session {
      * 
      * @return void
      */
-    public static function set_flash($key, $message) {
+    public static function setFlash($key, $message) {
         self::set('flash_'.$key, $message);
     }
 
@@ -87,7 +87,7 @@ class Session {
      * @param string $key
      * @return string
      */
-    public static function get_flash($key) {
+    public static function getFlash($key) {
         $message = self::get('flash_'.$key);
         self::clear('flash_'.$key);
         return $message;

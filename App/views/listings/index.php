@@ -1,17 +1,17 @@
-<?= load_partial('head') ?>
-<?= load_partial('navbar') ?>
-<?= load_partial('top-banner') ?>
+<?= loadPartial('head') ?>
+<?= loadPartial('navbar') ?>
+<?= loadPartial('top-banner') ?>
 
 <section>
     <div class="container mx-auto p-4 mt-4">
         <div class="text-center text-3xl mb-4 font-bold border border-gray-300 p-3">
-			<?php if ($keywords || $location): ?>
+			<?php if (isset($keywords) || isset($location)): ?>
 				Search results for: <?= htmlspecialchars($keywords) . ($location ? " in " . htmlspecialchars($location) : '') ?>
 			<?php else: ?>
 				All Job Listings
 			<?php endif; ?>
 		</div>
-		<?= load_partial('message') ?>
+		<?= loadPartial('message') ?>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
 
             <?php foreach ($listings as $listing): ?>
@@ -20,12 +20,14 @@
 					<h2 class="text-xl font-semibold"><?= $listing->title ?></h2>
 					<p class="text-gray-700 text-lg mt-2"><?= $listing->description ?></p>
 					<ul class="my-4 bg-gray-100 p-4 rounded">
-						<li class="mb-2"><strong>Salary:</strong> <?= format_salary($listing->salary) ?></li>
+						<li class="mb-2"><strong>Salary:</strong> <?= formatSalary($listing->salary) ?></li>
 						<li class="mb-2">
 							<strong>Location:</strong> <?= $listing->city ?>, <?= $listing->state ?>
-							<!-- <span class="text-xs bg-blue-500 text-white rounded-full px-2 py-1 ml-2">
-								Local
-							</span> -->
+							<?php if ($listing->city === Framework\Session::get('user')['city']): ?>
+								<span class="text-xs bg-blue-500 text-white rounded-full px-2 py-1 ml-2">
+									Local
+								</span>
+							<?php endif; ?>
 						</li>
 						<?php if ($listing->tags): ?>
 							<li class="mb-2">
@@ -44,5 +46,5 @@
     </div>
 </section>
 
-<?= load_partial('bottom-banner') ?>
-<?= load_partial('footer') ?>
+<?= loadPartial('bottom-banner') ?>
+<?= loadPartial('footer') ?>

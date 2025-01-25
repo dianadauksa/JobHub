@@ -11,7 +11,7 @@ class ListingsController {
     protected $db;
 
     public function __construct() {
-        $config = require base_path('config/db.php');
+        $config = require basePath('config/db.php');
         $this->db = new Database($config);
     }
 
@@ -23,7 +23,7 @@ class ListingsController {
     public function index(): void {
         $listings = $this->db->query('SELECT * FROM listings ORDER BY created_at DESC')->fetchAll();
 
-        load_view('listings/index', [
+        loadView('listings/index', [
             'listings' => $listings
         ]);
     }
@@ -42,11 +42,11 @@ class ListingsController {
         ])->fetch();
 
         if (!$listing) {
-            ErrorController::not_found('Listing not found');
+            ErrorController::notFound('Listing not found');
             return;
         }
 
-        load_view('listings/show', [
+        loadView('listings/show', [
             'listing' => $listing
         ]);
     }
@@ -65,7 +65,7 @@ class ListingsController {
             'location' => "%{$location}%"
         ])->fetchAll();
 
-        load_view('/listings/index', [
+        loadView('/listings/index', [
             'listings' => $listings,
             'keywords' => $keywords,
             'location' => $location
@@ -78,7 +78,7 @@ class ListingsController {
      * @return void
      */
     public function create(): void {
-        load_view('listings/create');
+        loadView('listings/create');
     }
 
     /**
@@ -105,7 +105,7 @@ class ListingsController {
         }
 
         if (!empty($errors)) {
-            load_view('listings/create', [
+            loadView('listings/create', [
                 'errors' => $errors,
                 'listing' => $new_listing
             ]);
@@ -131,7 +131,7 @@ class ListingsController {
             $query = "INSERT INTO listings ({$fields}) VALUES ({$values})";
             $this->db->query($query, $new_listing);
 
-            Session::set_flash('success_message', 'Listing created successfully');
+            Session::setFlash('success_message', 'Listing created successfully');
 
             redirect('/listings');
         }
@@ -151,12 +151,12 @@ class ListingsController {
         ])->fetch();
 
         if (!$listing) {
-            ErrorController::not_found('Listing not found');
+            ErrorController::notFound('Listing not found');
             return;
         }
 
-        if (!Authorization::is_owner($listing->user_id)) {
-            Session::set_flash('error_message', 'You are not authorized to delete this listing');
+        if (!Authorization::isOwner($listing->user_id)) {
+            Session::setFlash('error_message', 'You are not authorized to delete this listing');
             redirect('/listings/'.$listing->id);
             return;
         }
@@ -165,7 +165,7 @@ class ListingsController {
             'id' => $id
         ]);
 
-        Session::set_flash('success_message', 'Listing deleted successfully');
+        Session::setFlash('success_message', 'Listing deleted successfully');
         redirect('/listings');
     }
 
@@ -183,17 +183,17 @@ class ListingsController {
         ])->fetch();
 
         if (!$listing) {
-            ErrorController::not_found('Listing not found');
+            ErrorController::notFound('Listing not found');
             return;
         }
 
-        if (!Authorization::is_owner($listing->user_id)) {
-            Session::set_flash('error_message', 'You are not authorized to edit this listing');
+        if (!Authorization::isOwner($listing->user_id)) {
+            Session::setFlash('error_message', 'You are not authorized to edit this listing');
             redirect('/listings/'.$listing->id);
             return;
         }
 
-        load_view('listings/edit', [
+        loadView('listings/edit', [
             'listing' => $listing
         ]);
     }
@@ -212,12 +212,12 @@ class ListingsController {
         ])->fetch();
 
         if (!$listing) {
-            ErrorController::not_found('Listing not found');
+            ErrorController::notFound('Listing not found');
             return;
         }
 
-        if (!Authorization::is_owner($listing->user_id)) {
-            Session::set_flash('error_message', 'You are not authorized to edit this listing');
+        if (!Authorization::isOwner($listing->user_id)) {
+            Session::setFlash('error_message', 'You are not authorized to edit this listing');
             redirect('/listings/'.$listing->id);
             return;
         }
@@ -240,7 +240,7 @@ class ListingsController {
         }
 
         if (!empty($errors)) {
-            load_view('listings/edit', [
+            loadView('listings/edit', [
                 'errors' => $errors,
                 'listing' => $listing
             ]);
@@ -259,7 +259,7 @@ class ListingsController {
 
             $this->db->query($update_query, $updates);
 
-            Session::set_flash('success_message', 'Listing updated successfully');
+            Session::setFlash('success_message', 'Listing updated successfully');
 
             redirect("/listings/{$id}");
         }

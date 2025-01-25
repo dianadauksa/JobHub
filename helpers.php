@@ -6,7 +6,7 @@
  * @param string $path
  * @return string
  */
-function base_path($path = ''): string {
+function basePath($path = ''): string {
     return __DIR__.'/'.$path;
 }
 
@@ -17,8 +17,8 @@ function base_path($path = ''): string {
  * @param array $data
  * @return void
  */
-function load_view($name, $data = []): void {
-	$view = base_path("App/views/{$name}.php");
+function loadView($name, $data = []): void {
+	$view = basePath("App/views/{$name}.php");
 
 	if (!file_exists($view)) {
 		die("View not found: {$name}");
@@ -35,8 +35,8 @@ function load_view($name, $data = []): void {
  * @param array $data
  * @return void
  */
-function load_partial($name, $data = []): void {
-	$partial = base_path("App/views/partials/{$name}.php");
+function loadPartial($name, $data = []): void {
+	$partial = basePath("App/views/partials/{$name}.php");
 
 	if (!file_exists($partial)) {
 		die("Partial not found: {$name}");
@@ -75,7 +75,7 @@ function dd($variable): void {
  * @param string $salary
  * @return string
  */
-function format_salary($salary): string {
+function formatSalary($salary): string {
 	return '$'.number_format(floatval($salary));
 }
 

@@ -18,7 +18,7 @@ class Router {
      * 
      * @return void
      */
-    public function register_route($method, $uri, $action, $middleware = []): void {
+    public function registerRoute($method, $uri, $action, $middleware = []): void {
         list($controller, $controller_method) = explode('@', $action);
         $this->routes[] = [
             'method' => $method,
@@ -39,7 +39,7 @@ class Router {
      * @return void
      */
     public function get($uri, $controller, $middleware = []): void {
-        $this->register_route('GET', $uri, $controller, $middleware);
+        $this->registerRoute('GET', $uri, $controller, $middleware);
     }
 
     /**
@@ -52,7 +52,7 @@ class Router {
      * @return void
      */
     public function post($uri, $controller, $middleware = []): void {
-        $this->register_route('POST', $uri, $controller, $middleware);
+        $this->registerRoute('POST', $uri, $controller, $middleware);
     }
 
     /**
@@ -65,7 +65,7 @@ class Router {
      * @return void
      */
     public function put($uri, $controller, $middleware = []): void {
-        $this->register_route('PUT', $uri, $controller, $middleware);
+        $this->registerRoute('PUT', $uri, $controller, $middleware);
     }
 
     /**
@@ -78,7 +78,7 @@ class Router {
      * @return void
      */
     public function delete($uri, $controller, $middleware = []): void {
-        $this->register_route('DELETE', $uri, $controller, $middleware);
+        $this->registerRoute('DELETE', $uri, $controller, $middleware);
     }
 
     /**
@@ -131,7 +131,7 @@ class Router {
             }
         }
 
-        ErrorController::not_found();
+        ErrorController::notFound();
     }
 }
             

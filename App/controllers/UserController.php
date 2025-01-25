@@ -10,7 +10,7 @@ class UserController {
     protected $db;
 
     public function __construct() {
-        $config = require base_path('config/db.php');
+        $config = require basePath('config/db.php');
         $this->db = new Database($config);
     }
 
@@ -20,7 +20,7 @@ class UserController {
      * @return void
      */
     public function create() {
-        load_view('users/create');
+        loadView('users/create');
     }
 
     /**
@@ -29,7 +29,7 @@ class UserController {
      * @return void
      */
     public function login() {
-        load_view('users/login');
+        loadView('users/login');
     }
 
     /**
@@ -64,7 +64,7 @@ class UserController {
         }
 
         if (!empty($errors)) {
-            load_view('users/create', [
+            loadView('users/create', [
                 'errors' => $errors,
                 'user' => [
                     'name' => $name,
@@ -83,7 +83,7 @@ class UserController {
 
         if ($user) {
             $errors['email'] = 'User with this email already exists';
-            load_view('users/create', [
+            loadView('users/create', [
                 'errors' => $errors
             ]);
             exit;
@@ -133,7 +133,7 @@ class UserController {
         }
 
         if (!empty($errors)) {
-            load_view('users/login', [
+            loadView('users/login', [
                 'errors' => $errors
             ]);
             exit;
@@ -145,7 +145,7 @@ class UserController {
 
         if (!$user) {
             $errors['email'] = 'Incorrect email or password';
-            load_view('users/login', [
+            loadView('users/login', [
                 'errors' => $errors
             ]);
             exit;
@@ -153,7 +153,7 @@ class UserController {
 
         if (!password_verify($password, $user->password)) {
             $errors['password'] = 'Incorrect email or password';
-            load_view('users/login', [
+            loadView('users/login', [
                 'errors' => $errors
             ]);
             exit;
