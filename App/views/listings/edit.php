@@ -10,13 +10,9 @@
             <h2 class="text-2xl font-bold mb-6 text-center text-gray-500">
                 Job Info
             </h2>
-            <?php if (isset($errors)): ?>
-                <div class="message bg-red-100 p-3 my-3">
-                    <?php foreach ($errors as $error): ?>
-                        <ul><?= $error ?></ul>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
+            <?= load_partial('errors', [
+                'errors' => $errors ?? []
+           ]) ?>
             <div class="mb-4">
                 <input
                 type="text"
