@@ -35,9 +35,11 @@ use Framework\Authorization;
             	<li class="mb-2"><strong>Salary:</strong> <?= formatSalary($listing->salary) ?></li>
             	<li class="mb-2">
             		<strong>Location:</strong> <?= $listing->city ?>, <?= $listing->state ?>
-            		<!-- <span class="text-xs bg-blue-500 text-white rounded-full px-2 py-1 ml-2">
-						Local
-					</span> -->
+					<?php if ($listing->city === Framework\Session::get('user')['city']): ?>
+						<span class="text-xs bg-blue-500 text-white rounded-full px-2 py-1 ml-2">
+							Local
+						</span>
+					<?php endif; ?>
             	</li>
 				<?php if ($listing->tags): ?>
 					<li class="mb-2">
