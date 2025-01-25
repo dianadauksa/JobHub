@@ -52,6 +52,27 @@ class ListingsController {
     }
 
     /**
+     * Search listings by keywords and location
+     * 
+     * @return void
+     */
+    public function search(): void {
+        $keywords = isset($_GET['keywords']) ? trim($_GET['keywords']) : '';
+        $location = isset($_GET['location']) ? trim($_GET['location']) : '';
+
+        $listings = $this->db->query('SELECT * FROM listings WHERE (title LIKE :keywords OR description LIKE :keywords OR tags LIKE :keywords OR company LIKE :keywords) AND (city LIKE :location OR state LIKE :location)', [
+            'keywords' => "%{$keywords}%",
+            'location' => "%{$location}%"
+        ])->fetchAll();
+
+        load_view('/listings/index', [
+            'listings' => $listings,
+            'keywords' => $keywords,
+            'location' => $location
+        ]);
+    }
+
+    /**
      * Display the create listing form
      * 
      * @return void
